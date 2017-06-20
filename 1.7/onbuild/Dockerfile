@@ -1,10 +1,6 @@
 FROM pipill/armhf-golang:1.7
 
-RUN [ "cross-build-start" ]
-
 RUN mkdir -p /go/src/app
-
-RUN [ "cross-build-end" ]
 
 WORKDIR /go/src/app
 
