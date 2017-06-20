@@ -1,4 +1,6 @@
-FROM buildpack-deps:jessie-scm
+FROM pipill/armhf-buildpack-deps:jessie-scm
+
+RUN [ "cross-build-start" ]
 
 # gcc for cgo
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -46,6 +48,9 @@ ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+
+RUN [ "cross-build-end" ]
+
 WORKDIR $GOPATH
 
 COPY go-wrapper /usr/local/bin/
